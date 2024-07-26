@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	    <!--Ignore comparing assembly identity as we don't set assembly identity information until pack-->
+		<NoWarn>CP0003</NoWarn>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageReleaseNotes>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/release_notes.txt'))</PackageReleaseNotes>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageId>[INSERT NUGET PACKAGE ID]</PackageId>
+		<PackageVersion></PackageVersion>
+		<Authors>Fredrik Arvidsson</Authors>
+		<Company>FKAN Consulting AB</Company>
+		<PackageTags>[INSERT TAGS HERE]</PackageTags>
+		<Description>[INSERT DESCRIPTION HERE]]</Description>
+		<RepositoryUrl>[INSERT REPO URL]]</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Copyright>Copyright © [YEAR] Fredrik Arvidsson</Copyright>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<ApiCompatValidateAssemblies>true</ApiCompatValidateAssemblies>
+	    <ApiCompatContractAssembly>LastMajorVersionBinary/lib/$(TargetFramework)/$(AssemblyName).dll</ApiCompatContractAssembly>
+	    <!--https://learn.microsoft.com/en-us/dotnet/fundamentals/apicompat/diagnostic-ids-->
+    	<ApiCompatGenerateSuppressionFile>false</ApiCompatGenerateSuppressionFile>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+	    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	    <PackageReference Include="Microsoft.DotNet.ApiCompat.Task" Version="8.0.303" PrivateAssets="all" IsImplicitlyDefined="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Project.UnitTests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<!-- <Target Name="DownloadLastMajorVersion" BeforeTargets="PreBuildEvent">
+	  <DownloadFile SourceUrl="https://www.nuget.org/api/v2/package/[INSERT NUGET PACKAGE ID HERE]]/1.0.0" DestinationFolder="LastMajorVersionBinary">
+		  <Output TaskParameter="DownloadedFile" PropertyName="LastMajorVersionNugetPackage" />
+	  </DownloadFile>
+	  <Unzip SourceFiles="$(LastMajorVersionNugetPackage)" DestinationFolder="LastMajorVersionBinary" />
+	</Target> -->
+
+</Project>
