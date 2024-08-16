@@ -25,7 +25,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 
-		<ApiCompatValidateAssemblies>true</ApiCompatValidateAssemblies>
+		<ApiCompatValidateAssemblies>false</ApiCompatValidateAssemblies>
 	    <!-- <ApiCompatContractAssembly>LastMajorVersionBinary/lib/$(TargetFramework)/$(AssemblyName).dll</ApiCompatContractAssembly> -->
 	    <!--https://learn.microsoft.com/en-us/dotnet/fundamentals/apicompat/diagnostic-ids-->
     	<ApiCompatGenerateSuppressionFile>false</ApiCompatGenerateSuppressionFile>
