@@ -11,22 +11,22 @@
 		<PackageReleaseNotes>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/release_notes.txt'))</PackageReleaseNotes>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<PackageId>[INSERT NUGET PACKAGE ID]</PackageId>
+		<PackageId>Library.Net.ContinuousDelivery.Test</PackageId>
 		<PackageVersion></PackageVersion>
 		<Authors>Fredrik Arvidsson</Authors>
 		<Company>FKAN Consulting AB</Company>
-		<PackageTags>[INSERT TAGS HERE]</PackageTags>
-		<Description>[INSERT DESCRIPTION HERE]]</Description>
-		<RepositoryUrl>[INSERT REPO URL]]</RepositoryUrl>
+		<PackageTags>Continuous Delivery</PackageTags>
+		<Description>Workflows for .NET library continuous delivery</Description>
+		<RepositoryUrl>https://github.com/Fresa/Library.Net.ContinuousDelivery</RepositoryUrl>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Copyright>Copyright © [YEAR] Fredrik Arvidsson</Copyright>
+		<Copyright>Copyright © 2024 Fredrik Arvidsson</Copyright>
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 
 		<ApiCompatValidateAssemblies>true</ApiCompatValidateAssemblies>
-	    <ApiCompatContractAssembly>LastMajorVersionBinary/lib/$(TargetFramework)/$(AssemblyName).dll</ApiCompatContractAssembly>
+	    <!-- <ApiCompatContractAssembly>LastMajorVersionBinary/lib/$(TargetFramework)/$(AssemblyName).dll</ApiCompatContractAssembly> -->
 	    <!--https://learn.microsoft.com/en-us/dotnet/fundamentals/apicompat/diagnostic-ids-->
     	<ApiCompatGenerateSuppressionFile>false</ApiCompatGenerateSuppressionFile>
 
