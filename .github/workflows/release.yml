@@ -123,7 +123,7 @@ jobs:
         id: release
         uses: softprops/action-gh-release@v2
         with:
-          body_path: release_notes.txt
+          body_path: ${{ inputs.project_path }}/release_notes.txt
           tag_name: ${{ steps.release-tag.outputs.tag }}
           prerelease: ${{ steps.versioning.outputs.is-prerelease }}
         env:
