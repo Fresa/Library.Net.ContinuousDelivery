@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET
+        id: dotnet
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
@@ -25,6 +26,8 @@ jobs:
         run: dotnet build -c Release
       - name: Test
         run: dotnet test -c Release --no-build
+    outputs:
+      dotnet_version: ${{ steps.dotnet.outputs.dotnet-version }}
 
   release:
     name: Release
@@ -33,6 +36,7 @@ jobs:
     with:
       project_path: src/Project
       project_name: Project
+      dotnet_version: ${{ needs.build-and-test.outputs.dotnet_version }}
     secrets: 
       nuget_api_key: ${{ secrets.NUGET_API_KEY }}
 

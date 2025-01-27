@@ -23,7 +23,7 @@ permissions:
 jobs:
   release:
     name: Release
-    uses: https://github.com/Fresa/Library.Net.ContinuousDelivery/actions/workflows/release.yml@main
+    uses: https://github.com/Fresa/Library.Net.ContinuousDelivery/.github/workflows/release.yml@main
     with:
       project_path: src/Project
       project_name: Project
