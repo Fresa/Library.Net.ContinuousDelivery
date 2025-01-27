@@ -13,6 +13,13 @@ on:
         required: true
         type: string
 
+      dotnet_version:
+        description: The dotnet version to build with
+        required: false
+        type: string
+        # For backwards compatibility
+        default: 8.0.x
+
     secrets:
       nuget_api_key:
         description: NuGet.org API key with permissions to upload the created NuGet package
@@ -89,7 +96,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: ${{ inputs.dotnet_version }}
 
       - name: Read package id
         id: package-id
