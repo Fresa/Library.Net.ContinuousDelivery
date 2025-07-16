@@ -82,7 +82,7 @@ jobs:
 
       - name: Generate Release Notes
         id: release_notes
-        uses: Fresa/release-notes-generator@v3
+        uses: Fresa/release-notes-generator@v3.0.1-pre-4697f7c9
         with:
           version: ${{ steps.release-tag.outputs.tag }}
           last_release_ref: ${{ steps.versioning.outputs.last-release-ref }}
