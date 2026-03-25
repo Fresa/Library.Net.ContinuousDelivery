@@ -162,7 +162,8 @@ jobs:
         run: |
           dotnet nuget push nuget-packages/${{ steps.package-id.outputs.result }}.${{ steps.release-tag.outputs.version }}.nupkg \
             --api-key ${{ secrets.nuget_api_key }} \
-            --source https://api.nuget.org/v3/index.json
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
 
     outputs:
       major_version: ${{ steps.versioning.outputs.major-version }}
