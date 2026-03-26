@@ -75,12 +75,13 @@ jobs:
         id: release-tag
         run: |
           version=${{ steps.versioning.outputs.version }}
+          last_version=${{ steps.versioning.outputs.last-version }}
           if ${{ steps.versioning.outputs.is-prerelease }}; then
             version="$version-pre-$(echo ${{ steps.versioning.outputs.release-ref }} | cut -c1-8)"
           fi
 
           echo "tag=v$version" >> $GITHUB_OUTPUT
-          echo "last=v${{ steps.versioning.outputs.last-version }}" >> $GITHUB_OUTPUT
+          echo "last=${last_version:+v$last_version}" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Convert Commit Logs to JSON
