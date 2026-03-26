@@ -20,6 +20,14 @@ on:
         # For backwards compatibility
         default: 8.0.x
 
+      include_github_release_notes:
+        description: |
+          Should GitHub release notes be appended after semantic release notes in the release?
+          https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+        required: false
+        type: boolean
+        default: false
+
     secrets:
       nuget_api_key:
         description: NuGet.org API key with permissions to upload the created NuGet package
@@ -67,11 +75,13 @@ jobs:
         id: release-tag
         run: |
           version=${{ steps.versioning.outputs.version }}
+          last_version=${{ steps.versioning.outputs.last-version }}
           if ${{ steps.versioning.outputs.is-prerelease }}; then
             version="$version-pre-$(echo ${{ steps.versioning.outputs.release-ref }} | cut -c1-8)"
           fi
 
           echo "tag=v$version" >> $GITHUB_OUTPUT
+          echo "last=${last_version:+v$last_version}" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Convert Commit Logs to JSON
@@ -141,6 +151,8 @@ jobs:
           body_path: ${{ inputs.project_path }}/release_notes.txt
           tag_name: ${{ steps.release-tag.outputs.tag }}
           prerelease: ${{ steps.versioning.outputs.is-prerelease }}
+          generate_release_notes: ${{ inputs.include_github_release_notes }}
+          previous_tag: ${{ steps.release-tag.outputs.last }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
