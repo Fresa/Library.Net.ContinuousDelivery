@@ -22,7 +22,7 @@ on:
 
       include_github_release_notes:
         description: |
-          Should GitHub release notes be included in the release?
+          Should GitHub release notes be appended after semantic release notes in the release?
           https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
         required: false
         type: boolean
