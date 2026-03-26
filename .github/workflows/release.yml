@@ -80,7 +80,7 @@ jobs:
           fi
 
           echo "tag=v$version" >> $GITHUB_OUTPUT
-          echo "last=v$${{ steps.versioning.outputs.last-version }}" >> $GITHUB_OUTPUT
+          echo "last=v${{ steps.versioning.outputs.last-version }}" >> $GITHUB_OUTPUT
           echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Convert Commit Logs to JSON
@@ -151,7 +151,7 @@ jobs:
           tag_name: ${{ steps.release-tag.outputs.tag }}
           prerelease: ${{ steps.versioning.outputs.is-prerelease }}
           generate_release_notes: ${{ inputs.include_github_release_notes }}
-          previous_tag: v${{ steps.release-tag.outputs.last }}
+          previous_tag: ${{ steps.release-tag.outputs.last }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
