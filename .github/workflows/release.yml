@@ -54,7 +54,7 @@ jobs:
       # Create release and tags
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           # Fetches entire history, so we can analyze commits since last tag
           fetch-depth: 0
@@ -82,7 +82,7 @@ jobs:
 
       - name: Generate Release Notes
         id: release_notes
-        uses: Fresa/release-notes-generator@v3
+        uses: Fresa/release-notes-generator@v4
         with:
           version: ${{ steps.release-tag.outputs.tag }}
           last_release_ref: ${{ steps.versioning.outputs.last-release-ref }}
@@ -94,7 +94,7 @@ jobs:
           echo "${{ steps.release_notes.outputs.release_notes }}" > "${{ inputs.project_path }}/release_notes.txt"
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ inputs.dotnet_version }}
 
@@ -116,7 +116,7 @@ jobs:
             -p:ContinuousIntegrationBuild=true
 
       - name: Create Tag
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             try {
