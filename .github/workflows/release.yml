@@ -146,7 +146,7 @@ jobs:
 
       - name: Create Release
         id: release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           body_path: ${{ inputs.project_path }}/release_notes.txt
           tag_name: ${{ steps.release-tag.outputs.tag }}
