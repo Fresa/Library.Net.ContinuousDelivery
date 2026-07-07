@@ -77,7 +77,7 @@ jobs:
           version=${{ steps.versioning.outputs.version }}
           last_version=${{ steps.versioning.outputs.last-version }}
           if ${{ steps.versioning.outputs.is-prerelease }}; then
-            version="$version-pre-$(echo ${{ steps.versioning.outputs.release-ref }} | cut -c1-8)"
+            version="$version-pre-${{ steps.versioning.outputs.commit-count }}+$(echo ${{ steps.versioning.outputs.release-ref }} | cut -c1-8)"
           fi
 
           echo "tag=v$version" >> $GITHUB_OUTPUT
